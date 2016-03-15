@@ -1,30 +1,36 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux'
+
+import { connect } from 'react-redux'
+
+import * as Actions from '../actions';
+
+import Counter from "./Counter";
 
 export default class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      number: props.store.getState().number
-    };
-  }
-
-
-  doIncrement() {
-    this.props.store.dispatch({type: "INC_ACTION"});
-    this.setState({
-      number: this.props.store.getState().number
-    })
-  }
 
   render() {
     return (
       <div>
-        <h1>Hello, world. {this.state.number}</h1>
-        <button onClick={this.doIncrement.bind(this)}>Click</button>
-
+        <Counter number={this.props.COUNTER[0].number} inc={() => {this.props.actions.inc(0)}} />
+        <Counter number={this.props.COUNTER[1].number} inc={() => {this.props.actions.inc(1)}} />
       </div>
-
     );
   }
 }
+
+function mapStateToProps(state)  {
+  return state;
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

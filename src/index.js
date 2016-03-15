@@ -1,10 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux'
+
 import App from './components/App';
 import { createStore } from 'redux';
 import reducers from './reducers';
 
 
-let store = createStore(reducers);
+var _initialState = {
+  COUNTER: [{
+    id: 0,
+    number: 0
+  },{
+    id: 1,
+    number: 10
+  }]
+};
 
-ReactDOM.render(<App store={store}  />, document.getElementById('root'));
+let store = createStore(reducers, _initialState);
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('root')
+);

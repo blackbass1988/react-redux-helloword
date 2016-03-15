@@ -1,8 +1,8 @@
-let acionId = 0;
+const INC_ACTION = "INC_ACTION";
 
-export const fooAction = () => {
-    return {
-        type: "INC_ACTION",
-        id: acionId+1
-    }
+export const inc = (componentId) => {
+  return {
+    type: INC_ACTION,
+    id: componentId
+  }
 };
