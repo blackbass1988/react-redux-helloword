@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import * as Actions from '../actions';
 
-import Counter from "./Counter";
+import Counter from './Counter';
 
 export default class App extends React.Component {
 
